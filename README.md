@@ -80,7 +80,27 @@ A Laravel Filament 3 application for managing projects with ticket management an
    php artisan shield:super-admin
    ```
 
-9. Start the development server:
+9. Generate Permissions and Policies
+   ```
+   php artisan shield:generate --all --panel=admin
+   ```
+
+10. Create Shield Seeder (Optional, already included in DatabaseSeeder)
+   ```
+   php artisan shield:seeder
+   ```
+
+11. Run Shield Seeder to assign permissions to super_admin role
+   ```
+   php artisan db:seed --class=ShieldSeeder
+   ```
+
+   Note: If you're deploying to production or setting up a new environment, you can run all seeders at once:
+   ```
+   php artisan db:seed
+   ```
+
+12. Start the development server:
    ```
    php artisan serve
    ```
