@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.3-fpm as php
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -31,3 +31,19 @@ COPY --chown=www-data:www-data . /var/www
 EXPOSE 9000
 
 CMD ["php-fpm"]
+
+FROM node:18 as node
+
+WORKDIR /var/www
+
+COPY package.json package-lock.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+FROM php
+
+COPY --from=node /var/www/public/build /var/www/public/build

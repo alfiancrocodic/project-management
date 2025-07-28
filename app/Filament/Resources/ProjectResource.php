@@ -32,6 +32,25 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('ticket_prefix')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('project_status_id')
+                    ->label('Project Status')
+                    ->relationship('projectStatus', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\ColorPicker::make('color')
+                            ->required()
+                            ->default('#3490dc'),
+                    ])
+                    ->createOptionAction(function (Forms\Components\Actions\Action $action) {
+                        return $action
+                            ->modalHeading('Create project status')
+                            ->modalSubmitActionLabel('Create')
+                            ->modalWidth('lg');
+                    }),
                 Forms\Components\DatePicker::make('start_date')
                     ->label('Start Date')
                     ->native(false)
@@ -80,6 +99,10 @@ class ProjectResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ticket_prefix')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('projectStatus.name')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn ($record) => $record->projectStatus?->color ?? 'gray'),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date('d/m/Y')
                     ->sortable(),

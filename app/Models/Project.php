@@ -16,6 +16,7 @@ class Project extends Model
         'name',
         'description',
         'ticket_prefix',
+        'project_status_id',
         'start_date',
         'end_date',
         'pinned_date',
@@ -48,6 +49,11 @@ class Project extends Model
     public function ticketStatuses(): HasMany
     {
         return $this->hasMany(TicketStatus::class);
+    }
+    
+    public function projectStatus()
+    {
+        return $this->belongsTo(ProjectStatus::class);
     }
 
     public function tickets(): HasMany

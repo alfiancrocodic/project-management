@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name', 'Dewakoding Project Management') }}</title>
+        <title>{{ config('app.name', 'Project Management Crocodic') }}</title>
 
         <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -55,7 +55,7 @@
             <main class="flex-1 flex flex-col items-center justify-center w-full px-6 sm:px-10 py-12">
                 <div class="max-w-4xl w-full">
                     <div class="text-center mb-12">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Project Management <span class="text-gradient">Simplified</span></h1>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Project Management<span class="text-gradient">Simplified</span></h1>
                         <p class="text-xl text-gray-600 max-w-4xl mx-auto">Streamline your workflow with our intuitive and collaborative project management tool, designed for teams of all sizes.</p>
                     </div>
 
